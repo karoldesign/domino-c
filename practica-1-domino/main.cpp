@@ -13,61 +13,70 @@
 
 using namespace std;
 
-// Token
-string fileToStr(short int left, short int right) {
-    return 0;
-}
-
 string toStr(int n) {
     return 0;
 }
 
-bool putLeft(string table, short int tokenN1, short int tokenN2) {
+// Token
+string fichaToStr(short int left, short int right) {
+    string str = "|" + toStr(left) + "-" + toStr(right) + "|";
+    return str;
+}
+
+bool canPutLeft(string table, short int tokenN1, short int tokenN2) {
     return 0;
 }
 
-bool putRight(string table, short int tokenN1, short int tokenN2) {
+bool canPutRight(string table, short int tokenN1, short int tokenN2) {
     return 0;
 }
 
-string ponerFichaIzq(string table, short int tokenN1, short int tokenN2) {
+string putTokenLeft(string table, short int tokenN1, short int tokenN2) {
     return 0;
 }
 
-string ponerFichaDer(string table, short int tokenN1, short int tokenN2) {
+string putTokenRight(string table, short int tokenN1, short int tokenN2) {
     return 0;
 }
 
 // Tablero
 void mostrarTablero(short int tokenN1, short int tokenN2, string table, int numCounter, int numStolen) {
+    cout << " -------------------- " << endl;
+    cout << "|       TABLERO      |" << endl;
+    cout << " -------------------- " << endl;
+    cout << table << endl;
+    cout << "Fichas colocadas: " << numCounter << " - Fichas robadas: " << numStolen << endl;
+    cout << "Ficha jugador: " << fichaToStr(tokenN1, tokenN2) << endl;
     return;
 }
+
 // Menú
 int showMenu() {
-    return 0;
+    int chooseOption = 0;
+    
+    while (chooseOption < 1 || chooseOption > 4)
+    {
+        cout << " -------------------- " << endl;
+        cout << "|  MENÚ DE OPCIONES  |" << endl;
+        cout << " -------------------- " << endl;
+        cout << "1. Poner ficha por la izquierda" << endl;
+        cout << "2. Poner ficha por la derecha" << endl;
+        cout << "3. Robar ficha nueva" << endl;
+        cout << "4. Salir" << endl;
+        
+        cout << "Elija opción: ";
+        cin >> chooseOption;
+    }
+    
+    return chooseOption;
 }
 
 // Alert
 short int aleat() {
-    return 0;
+    return rand()%7;
 }
 
 int main(int argc, const char * argv[]) {
-    int chooseOption;
-    
-    cout << " -------------------- " << endl;
-    cout << "|       TABLERO      |" << endl;
-    cout << " -------------------- " << endl;
-    cout << " -------------------- " << endl;
-    cout << "|  MENÚ DE OPCIONES  |" << endl;
-    cout << " -------------------- " << endl;
-    cout << "1. Poner ficha por la izquierda" << endl;
-    cout << "2. Poner ficha por la derecha" << endl;
-    cout << "3. Robar ficha nueva" << endl;
-    cout << "4. Salir" << endl;
-    
-    cout << "Elija opción: ";
-    cin >> chooseOption;
-    
+    srand(time(NULL));
     return 0;
 }
