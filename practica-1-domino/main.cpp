@@ -13,7 +13,7 @@
 
 using namespace std;
 
-// Ficha
+// Token
 string fileToStr(short int left, short int right) {
     return 0;
 }
@@ -22,23 +22,24 @@ string toStr(int n) {
     return 0;
 }
 
-bool putLeft(string table, short int fileN1, short int fileN2) {
-    return 0;
-}
-bool putRight(string table, short int fichaN1, short int fichaN2) {
+bool putLeft(string table, short int tokenN1, short int tokenN2) {
     return 0;
 }
 
-string ponerFichaIzq(string table, short int fileN1, short int fileN2) {
+bool putRight(string table, short int tokenN1, short int tokenN2) {
     return 0;
 }
 
-string ponerFichaDer(string table, short int fileN1, short int fileN2) {
+string ponerFichaIzq(string table, short int tokenN1, short int tokenN2) {
+    return 0;
+}
+
+string ponerFichaDer(string table, short int tokenN1, short int tokenN2) {
     return 0;
 }
 
 // Tablero
-void mostrarTablero(short int fileN1, short int fileN2, string table, int numCounter, int numStolen) {
+void mostrarTablero(short int tokenN1, short int tokenN2, string table, int numCounter, int numStolen) {
     return;
 }
 // Menú
