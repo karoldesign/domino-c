@@ -15,7 +15,6 @@ using namespace std;
 
 // Ficha
 string fileToStr(short int left, short int right) {
-    // content
     return 0;
 }
 
@@ -30,7 +29,13 @@ bool putRight(string table, short int fichaN1, short int fichaN2) {
     return 0;
 }
 
-// Jugador
+string ponerFichaIzq(string table, short int fileN1, short int fileN2) {
+    return 0;
+}
+
+string ponerFichaDer(string table, short int fileN1, short int fileN2) {
+    return 0;
+}
 
 // Tablero
 void mostrarTablero(short int fileN1, short int fileN2, string table, int numCounter, int numStolen) {
@@ -38,12 +43,13 @@ void mostrarTablero(short int fileN1, short int fileN2, string table, int numCou
 }
 // Menú
 int showMenu() {
-    // content
     return 0;
 }
 
 // Alert
-short int aleat() {}
+short int aleat() {
+    return 0;
+}
 
 int main(int argc, const char * argv[]) {
     // insert code here...
