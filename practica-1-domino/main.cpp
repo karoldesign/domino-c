@@ -52,12 +52,21 @@ short int aleat() {
 }
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
+    int chooseOption;
+    
     cout << " -------------------- " << endl;
     cout << "|       TABLERO      |" << endl;
     cout << " -------------------- " << endl;
     cout << " -------------------- " << endl;
     cout << "|  MENÚ DE OPCIONES  |" << endl;
     cout << " -------------------- " << endl;
+    cout << "1. Poner ficha por la izquierda" << endl;
+    cout << "2. Poner ficha por la derecha" << endl;
+    cout << "3. Robar ficha nueva" << endl;
+    cout << "4. Salir" << endl;
+    
+    cout << "Elija opción: ";
+    cin >> chooseOption;
+    
     return 0;
 }
