@@ -35,41 +35,41 @@ string toStr(int n) {
             return "8";
         case 9:
             return "9";
+        default:
+            return "ERROR";
     }
-    
-    return 0;
 }
 
 // Token
-string fichaToStr(short int left, short int right) {
+string tokenToStr(short int left, short int right) {
     string str = "|" + toStr(left) + "-" + toStr(right) + "|";
     return str;
 }
 
-bool canPutLeft(string table, short int tokenN1, short int tokenN2) {
-    return (table[1]-0x30==tokenN2);
+bool canPutLeft(string board, short int tokenN1, short int tokenN2) {
+    return (board[1]-0x30==tokenN2);
 }
 
-bool canPutRight(string table, short int tokenN1, short int tokenN2) {
-    return (table[table.size()-2]-0x30==tokenN1);
+bool canPutRight(string board, short int tokenN1, short int tokenN2) {
+    return (board[board.size()-2]-0x30;==tokenN1);
 }
 
-string putTokenLeft(string table, short int tokenN1, short int tokenN2) {
-    return table + fichaToStr(tokenN1, tokenN2);
+string putTokenLeft(string board, short int tokenN1, short int tokenN2) {
+    return tokenToStr(tokenN1, tokenN2) + board;
 }
 
-string putTokenRight(string table, short int tokenN1, short int tokenN2) {
-    return table + fichaToStr(tokenN1, tokenN2);
+string putTokenRight(string board, short int tokenN1, short int tokenN2) {
+    return board + tokenToStr(tokenN1, tokenN2);
 }
 
 // Tablero
-void mostrarTablero(short int tokenN1, short int tokenN2, string table, int numCounter, int numStolen) {
+void showBoard(short int tokenN1, short int tokenN2, string board, int numCounter, int numStolen) {
     cout << " -------------------- " << endl;
     cout << "|       TABLERO      |" << endl;
     cout << " -------------------- " << endl;
-    cout << table << endl;
+    cout << board << endl;
     cout << "Fichas colocadas: " << numCounter << " - Fichas robadas: " << numStolen << endl;
-    cout << "Ficha jugador: " << fichaToStr(tokenN1, tokenN2) << endl;
+    cout << "Ficha jugador: " << tokenToStr(tokenN1, tokenN2) << endl;
     return;
 }
 
@@ -77,8 +77,7 @@ void mostrarTablero(short int tokenN1, short int tokenN2, string table, int numC
 int showMenu() {
     int chooseOption = 0;
     
-    while (chooseOption < 1 || chooseOption > 4)
-    {
+    while (chooseOption < 1 || chooseOption > 4) {
         cout << " -------------------- " << endl;
         cout << "|  MENÚ DE OPCIONES  |" << endl;
         cout << " -------------------- " << endl;
@@ -100,9 +99,36 @@ short int aleat() {
 }
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    int counter = 0, stolen = 0, option = 0;
+    int counter = 0, stolen = 0;
+
     srand(time(NULL));
-    
+    for (int option = 0; option != 4;) {
+        option = showMenu();
+        switch(option){
+            case 1:
+                if (canPutLeft(board, tokenN1, tokenN2)) {
+                    putTokenLeft(board, tokenN1, tokenN2);
+                    counter++;
+                } else if (canPutLeft(board, tokenN2, tokenN1)) {
+                    putTokenLeft(board, tokenN2, tokenN1);
+                    counter++;
+                } else {
+                    cout << " ERROR! :-( " << endl;
+                }
+                break;
+            case 2:
+                if (canPutRight(board, tokenN1, tokenN2)) {
+                    putTokenRight(board, tokenN1, tokenN2);
+                    counter++;
+                } else if (canPutRight(board, tokenN2, tokenN1)) {
+                    putTokenRight(board, tokenN2, tokenN1);
+                    counter++;
+                } else {
+                    cout << " ERROR! :-( " << endl;
+                }
+                break;
+            case 3:
+        }
+    } 
     return 0;
 }
