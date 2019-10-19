@@ -51,7 +51,7 @@ bool canPutLeft(string board, short int tokenN1, short int tokenN2) {
 }
 
 bool canPutRight(string board, short int tokenN1, short int tokenN2) {
-    return (board[board.size()-2]-0x30;==tokenN1);
+    return (board[board.size()-2]-0x30==tokenN1);
 }
 
 string putTokenLeft(string board, short int tokenN1, short int tokenN2) {
@@ -99,18 +99,28 @@ short int aleat() {
 }
 
 int main(int argc, const char * argv[]) {
-    int counter = 0, stolen = 0;
+    int counter = 0;
+    int stolen = 0;
+    int tokenN1 = aleat();
+    int tokenN2 = aleat();
+
+    string board = tokenToStr(aleat(), aleat());
 
     srand(time(NULL));
     for (int option = 0; option != 4;) {
+        showBoard(tokenN1, tokenN2, board, counter, stolen);
         option = showMenu();
         switch(option){
             case 1:
                 if (canPutLeft(board, tokenN1, tokenN2)) {
-                    putTokenLeft(board, tokenN1, tokenN2);
+                    board = putTokenLeft(board, tokenN1, tokenN2);
+                    tokenN1 = aleat();
+                    tokenN2 = aleat();
                     counter++;
                 } else if (canPutLeft(board, tokenN2, tokenN1)) {
-                    putTokenLeft(board, tokenN2, tokenN1);
+                    board = putTokenLeft(board, tokenN2, tokenN1);
+                    tokenN1 = aleat();
+                    tokenN2 = aleat();
                     counter++;
                 } else {
                     cout << " ERROR! :-( " << endl;
@@ -118,16 +128,24 @@ int main(int argc, const char * argv[]) {
                 break;
             case 2:
                 if (canPutRight(board, tokenN1, tokenN2)) {
-                    putTokenRight(board, tokenN1, tokenN2);
+                    board = putTokenRight(board, tokenN1, tokenN2);
+                    tokenN1 = aleat();
+                    tokenN2 = aleat();
                     counter++;
                 } else if (canPutRight(board, tokenN2, tokenN1)) {
-                    putTokenRight(board, tokenN2, tokenN1);
+                    board = putTokenRight(board, tokenN2, tokenN1);
+                    tokenN1 = aleat();
+                    tokenN2 = aleat();
                     counter++;
                 } else {
                     cout << " ERROR! :-( " << endl;
                 }
                 break;
             case 3:
+                tokenN1 = aleat();
+                tokenN2 = aleat();
+                stolen++;
+                break;
         }
     } 
     return 0;
