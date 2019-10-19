@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <list>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -94,19 +95,44 @@ int showMenu() {
 }
 
 // Alert
-short int aleat() {
-    return rand()%7;
+short int aleat(int n) {
+
+    return rand()%(n+1);
+}
+
+short int chooseMax() {
+    int chooseMax = 0;
+
+    while (chooseMax < 6 || chooseMax > 9) {
+        cout << "Variante del juego (entre 6 y 9): ";
+        cin >> chooseMax;
+    }
+    return chooseMax;
+}
+
+bool chooseSave() {
+    char option = ' ';
+
+    while (option != 'S' && option != 'N') {
+        cout << "¿Quiéres guardar antes de salir? (S/N)";
+        cin >> option;
+    }
+
+    return option == 'S';
 }
 
 int main(int argc, const char * argv[]) {
     int counter = 0;
     int stolen = 0;
-    int tokenN1 = aleat();
-    int tokenN2 = aleat();
-
-    string board = tokenToStr(aleat(), aleat());
-
+    int max = chooseMax();
+    
     srand(time(NULL));
+
+    int tokenN1 = aleat(max);
+    int tokenN2 = aleat(max);
+
+    string board = tokenToStr(aleat(max), aleat(max));
+
     for (int option = 0; option != 4;) {
         showBoard(tokenN1, tokenN2, board, counter, stolen);
         option = showMenu();
@@ -114,13 +140,13 @@ int main(int argc, const char * argv[]) {
             case 1:
                 if (canPutLeft(board, tokenN1, tokenN2)) {
                     board = putTokenLeft(board, tokenN1, tokenN2);
-                    tokenN1 = aleat();
-                    tokenN2 = aleat();
+                    tokenN1 = aleat(max);
+                    tokenN2 = aleat(max);
                     counter++;
                 } else if (canPutLeft(board, tokenN2, tokenN1)) {
                     board = putTokenLeft(board, tokenN2, tokenN1);
-                    tokenN1 = aleat();
-                    tokenN2 = aleat();
+                    tokenN1 = aleat(max);
+                    tokenN2 = aleat(max);
                     counter++;
                 } else {
                     cout << " ERROR! :-( " << endl;
@@ -129,24 +155,35 @@ int main(int argc, const char * argv[]) {
             case 2:
                 if (canPutRight(board, tokenN1, tokenN2)) {
                     board = putTokenRight(board, tokenN1, tokenN2);
-                    tokenN1 = aleat();
-                    tokenN2 = aleat();
+                    tokenN1 = aleat(max);
+                    tokenN2 = aleat(max);
                     counter++;
                 } else if (canPutRight(board, tokenN2, tokenN1)) {
                     board = putTokenRight(board, tokenN2, tokenN1);
-                    tokenN1 = aleat();
-                    tokenN2 = aleat();
+                    tokenN1 = aleat(max);
+                    tokenN2 = aleat(max);
                     counter++;
                 } else {
                     cout << " ERROR! :-( " << endl;
                 }
                 break;
             case 3:
-                tokenN1 = aleat();
-                tokenN2 = aleat();
+                tokenN1 = aleat(max);
+                tokenN2 = aleat(max);
                 stolen++;
                 break;
         }
     } 
+
+    if (chooseSave()) {
+        ofstream archivo;
+        archivo.open("domino_save.txt", ios::out);
+        if (!archivo.is_open()) {
+            cout << "¡No se ha podido abrir el archivo!" << endl;
+        } else {
+            archivo << board << " " << tokenN1 << " " << tokenN2 << " " << max << endl;
+            archivo.close();
+        }
+    }
     return 0;
 }
