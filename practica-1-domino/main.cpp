@@ -121,17 +121,51 @@ bool chooseSave() {
     return option == 'S';
 }
 
+bool openFile() {
+    char option = ' ';
+
+    while (option != 'S' && option != 'N') {
+        cout << "¿Quiéres abrir un archivo anterior? (S/N)";
+        cin >> option;
+    }
+
+    return option == 'S';
+}
+
 int main(int argc, const char * argv[]) {
     int counter = 0;
     int stolen = 0;
-    int max = chooseMax();
-    
-    srand(time(NULL));
+    int max;
+    int tokenN1;
+    int tokenN2;
+    string board;
 
-    int tokenN1 = aleat(max);
-    int tokenN2 = aleat(max);
+    if (openFile()) {
+            ifstream archivo;
+            archivo.open("domino_save.txt", ios::in);
+        if (!archivo.is_open()) {
+            cout << "¡No se ha podido abrir el archivo!" << endl;
+            max = chooseMax();
+            srand(time(NULL));
 
-    string board = tokenToStr(aleat(max), aleat(max));
+            tokenN1 = aleat(max);
+            tokenN2 = aleat(max);
+            board = tokenToStr(aleat(max), aleat(max));
+        } else {
+            archivo >> board;
+            archivo >> tokenN1;
+            archivo >> tokenN2;
+            archivo >> max;
+            archivo.close();
+        }
+    } else {
+        max = chooseMax();
+        srand(time(NULL));
+
+        tokenN1 = aleat(max);
+        tokenN2 = aleat(max);
+        board = tokenToStr(aleat(max), aleat(max));
+    }
 
     for (int option = 0; option != 4;) {
         showBoard(tokenN1, tokenN2, board, counter, stolen);
@@ -181,7 +215,11 @@ int main(int argc, const char * argv[]) {
         if (!archivo.is_open()) {
             cout << "¡No se ha podido abrir el archivo!" << endl;
         } else {
-            archivo << board << " " << tokenN1 << " " << tokenN2 << " " << max << endl;
+            archivo << board << '\n'
+                    << tokenN1 << '\n'
+                    << tokenN2 << '\n'
+                    << max << '\n';
+
             archivo.close();
         }
     }
