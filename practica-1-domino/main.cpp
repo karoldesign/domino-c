@@ -139,6 +139,7 @@ int main(int argc, const char * argv[]) {
     int tokenN1;
     int tokenN2;
     string board;
+    srand(time(NULL));
 
     if (openFile()) {
             ifstream archivo;
@@ -146,22 +147,21 @@ int main(int argc, const char * argv[]) {
         if (!archivo.is_open()) {
             cout << "¡No se ha podido abrir el archivo!" << endl;
             max = chooseMax();
-            srand(time(NULL));
 
             tokenN1 = aleat(max);
             tokenN2 = aleat(max);
             board = tokenToStr(aleat(max), aleat(max));
         } else {
-            srand(time(NULL));
             archivo >> board;
             archivo >> tokenN1;
             archivo >> tokenN2;
+            archivo >> counter;
+            archivo >> stolen;
             archivo >> max;
             archivo.close();
         }
     } else {
         max = chooseMax();
-        srand(time(NULL));
 
         tokenN1 = aleat(max);
         tokenN2 = aleat(max);
@@ -219,6 +219,8 @@ int main(int argc, const char * argv[]) {
             archivo << board << '\n'
                     << tokenN1 << '\n'
                     << tokenN2 << '\n'
+                    << counter << '\n'
+                    << stolen << '\n'
                     << max << '\n';
 
             archivo.close();
