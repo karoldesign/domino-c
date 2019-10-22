@@ -152,6 +152,7 @@ int main(int argc, const char * argv[]) {
             tokenN2 = aleat(max);
             board = tokenToStr(aleat(max), aleat(max));
         } else {
+            srand(time(NULL));
             archivo >> board;
             archivo >> tokenN1;
             archivo >> tokenN2;
